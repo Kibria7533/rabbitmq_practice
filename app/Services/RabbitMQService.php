@@ -38,7 +38,7 @@ class RabbitMQService
         $errorExchange = env('RABBITMQ_ERROR_EXCHANGE_NAME', 'error.x');
         $errorExchangeType = env('RABBITMQ_ERROR_EXCHANGE_TYPE', 'fanout');
         $errorQueue = env('RABBITMQ_ERROR_QUEUE_NAME', 'error.q');
-
+        Log::info('I am here lllloooo');
         /** Create Alternate Exchange */
         if (!$queue->isExchangeExists($alternateExchange)) {
             $queue->declareExchange(

@@ -6,6 +6,7 @@ use App\Facade\RabbitMQFacade;
 use App\Services\RabbitMQService;
 use Exception;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Log;
 use VladimirYuldashev\LaravelQueueRabbitMQ\Queue\Connectors\RabbitMQConnector;
 
 class MakeOrderListener implements ShouldQueue
@@ -23,6 +24,7 @@ class MakeOrderListener implements ShouldQueue
      */
     public function __construct(RabbitMQConnector $connector, RabbitMQService $rabbitmqService)
     {
+        Log::info('Listener called');
         $this->connector = $connector;
         $this->rabbitmqService = $rabbitmqService;
         RabbitMQFacade::publishEvent(

@@ -16,10 +16,7 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         MakeOrderEvent::class => [
             MakeOrderListener::class
-        ],
-        \App\Events\ExampleEvent::class => [
-            \App\Listeners\ExampleListener::class,
-        ],
+        ]
     ];
 
     /**

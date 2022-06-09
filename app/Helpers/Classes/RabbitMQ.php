@@ -4,6 +4,7 @@ namespace App\Helpers\Classes;
 
 use App\Services\RabbitMQService;
 use Exception;
+use Illuminate\Support\Facades\Log;
 use PhpAmqpLib\Exception\AMQPProtocolChannelException;
 use VladimirYuldashev\LaravelQueueRabbitMQ\Queue\Connectors\RabbitMQConnector;
 
@@ -81,6 +82,7 @@ class RabbitMQ
             'queueAutoDelete' => $queueAutoDelete,
             'queueMode' => $queueMode
         ];
+        Log::info($exchangePayload);
         if ($retry) {
             /** DlX-DLQ related variables */
             $dlx = config('rabbitmq.exchanges.' . $configExchangeName . '.dlx.name');
@@ -92,6 +94,7 @@ class RabbitMQ
             $dlqDurable = config('rabbitmq.exchanges.' . $configExchangeName . '.queue.' . $configQueueName . '.dlq.durable');
             $dlqAutoDelete = config('rabbitmq.exchanges.' . $configExchangeName . '.queue.' . $configQueueName . '.dlq.autoDelete');
             $dlqQueueMode = config('rabbitmq.exchanges.' . $configExchangeName . '.queue.' . $configQueueName . '.dlq.queueMode');
+
 
             $exchangePayload['dlx'] = $dlx;
             $exchangePayload['dlxType'] = $dlxType;
